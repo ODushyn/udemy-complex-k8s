@@ -19,3 +19,14 @@ script:
   - docker push $DOCKER_ID/udemy-complex-nginx
   - docker push $DOCKER_ID/udemy-complex-server
   - docker push $DOCKER_ID/udemy-complex-worker
+deploy:
+  provider: "elasticbeanstalk"
+  region: "us-east-2"
+  app: "docker-u-complex"
+  env: " DockerUComplex-env"
+  bucket_name: "elasticbeanstalk-us-east-2-702433753249"
+  bucket_path: "docker-u-complex"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
